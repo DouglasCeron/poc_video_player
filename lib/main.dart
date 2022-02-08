@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poc_video_player/cast.dart';
 import 'package:poc_video_player/chewie_class.dart';
+import 'package:poc_video_player/data/data_source/fetch_video_remote.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +21,8 @@ class _MyAppState extends State<MyApp> {
 }
 
 class MyHomePage extends StatelessWidget {
+  FetchVideoRemoteData fetchVideo = FetchVideoRemoteData();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +31,16 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Cast(),
           Container(
             width: double.infinity,
             height: 290,
             child: ChewieClass(),
           ),
+          SizedBox(height: 50),
+          ElevatedButton(
+            onPressed: () => fetchVideo.downloadFile(),
+            child: Text('DownLoad Video'),
+          )
         ],
       ),
     );
